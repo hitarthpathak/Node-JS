@@ -1,10 +1,11 @@
 {
   "name": "fs-module",
   "version": "1.0.0",
-  "description": "A Basic HTTP Server Using FS-Module.",
+  "description": "A Basic HTTP & Express JS Server Using FS-Module.",
   "keywords": [
     "node",
     "http-server",
+    "express-server",
     "fs-module"
   ],
   "license": "ISC",
@@ -15,6 +16,7 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "express": "^5.3.0",
     "fs": "^0.0.1-security"
   }
 }

@@ -2,21 +2,25 @@ const http = require('http');
 const PORT = process.env.PORT || 3000;
 
 const server = http.createServer((req, res) => {
-    switch (req.url) {
-        case '/':
-            res.end('Home Page!');
-            break;
-        case '/about':
-            res.end('About Page!');
-            break;
-        case '/contact':
-            res.end('Contact Page!');
-            break;
-        case '/search':
-            res.end('Search Page!');
-            break;
-        default:
-            res.end('Page Not Found!');
+    if (req.url == '/') {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('Home Page!');
+    }
+    else if (req.url == '/about') {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('About Page!');
+    }
+    else if (req.url == '/contact') {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('Contact Page!');
+    }
+    else if (req.url == '/search') {
+        res.writeHead(200, { 'Content-Type': 'text/plain' });
+        res.end('Search Page!');
+    }
+    else {
+        res.writeHead(404, { 'Content-Type': 'text/plain' });
+        res.end('Page Not Found!');
     };
 });
 

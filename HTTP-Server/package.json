@@ -4,6 +4,7 @@
   "description": "A Basic HTTP Server.",
   "keywords": [
     "node",
+    "http",
     "http-server"
   ],
   "license": "ISC",
