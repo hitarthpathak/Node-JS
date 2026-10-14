@@ -1,0 +1,20 @@
+{
+  "name": "fs-module",
+  "version": "1.0.0",
+  "description": "A Basic HTTP Server Using FS-Module.",
+  "keywords": [
+    "node",
+    "http-server",
+    "fs-module"
+  ],
+  "license": "ISC",
+  "author": "Hitarth Pathak",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  }
+}

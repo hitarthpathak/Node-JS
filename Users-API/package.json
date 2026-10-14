@@ -1,0 +1,20 @@
+{
+  "name": "users-api",
+  "version": "1.0.0",
+  "description": "A Random 1000 User's Data API.",
+  "keywords": [
+    "node",
+    "api",
+    "users"
+  ],
+  "license": "ISC",
+  "author": "Hitarth Pathak",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "url": "^0.11.4"
+  }
+}

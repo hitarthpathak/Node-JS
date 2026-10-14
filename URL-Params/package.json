@@ -1,0 +1,21 @@
+{
+  "name": "url-params",
+  "version": "1.0.0",
+  "description": "A Basic HTTP Server Routing Using URL Params.",
+  "keywords": [
+    "node",
+    "http-server",
+    "http-routing",
+    "url-params"
+  ],
+  "license": "ISC",
+  "author": "Hitarth Pathak",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "url": "^0.11.4"
+  }
+}

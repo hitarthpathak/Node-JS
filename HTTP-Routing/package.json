@@ -1,0 +1,17 @@
+{
+  "name": "http-routing",
+  "version": "1.0.0",
+  "description": "A Basic HTTP Server Routing.",
+  "keywords": [
+    "node",
+    "http-server",
+    "http-routing"
+  ],
+  "license": "ISC",
+  "author": "Hitarth Pathak",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
