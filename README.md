@@ -34,7 +34,38 @@ http:localhost:3000/*anything*
 # HTTP-MIddleware
 
 # Express-JS-Server
+Terminal Command :
+```
+npm start
+```
+Open These Links In Browser :
+```
+http:localhost:3000
+```
+
 # Express-JS-Routing
+Terminal Command :
+```
+npm start
+```
+Open These Links In Browser :
+```
+http:localhost:3000
+```
+```
+http:localhost:3000/about
+```
+```
+http:localhost:3000/contact
+```
+```
+http:localhost:3000/search
+```
+*Default :*
+```
+http:localhost:3000/*anything*
+```
+
 # Express-JS-Middleware
 
 # FS-Module (Built Using Both HTTP Server & Express JS Server)
