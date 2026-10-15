@@ -1,7 +1,7 @@
 {
   "name": "express-js",
   "version": "1.0.0",
-  "description": "A Node JS Server Using Express JS Framework.",
+  "description": "A Basic Express JS Server.",
   "keywords": [
     "node",
     "express",

@@ -1,11 +1,13 @@
 {
   "name": "url-params",
   "version": "1.0.0",
-  "description": "A Basic HTTP Server Routing Using URL Params.",
+  "description": "A Basic URL Params Setup Using HTTP Server Routing & Express JS Server Routing.",
   "keywords": [
     "node",
     "http-server",
     "http-routing",
+    "express-server",
+    "express-routing",
     "url-params"
   ],
   "license": "ISC",

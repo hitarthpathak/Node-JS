@@ -1,7 +1,7 @@
 {
   "name": "fs-module",
   "version": "1.0.0",
-  "description": "A Basic HTTP & Express JS Server Using FS-Module.",
+  "description": "A Basic FS-Module Setup Using HTTP Server & Express JS Server.",
   "keywords": [
     "node",
     "http-server",
