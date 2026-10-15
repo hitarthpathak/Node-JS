@@ -1,11 +1,14 @@
 {
   "name": "users-api",
   "version": "1.0.0",
-  "description": "A Random 1000 User's Data API.",
+  "description": "A Random 1000 User's API (GET & POST) Using HTTP Server & Node JS Server.",
   "keywords": [
-    "node",
+    "users-api",
     "api",
-    "users"
+    "get-api",
+    "post-api",
+    "node-server",
+    "express-server"
   ],
   "license": "ISC",
   "author": "Hitarth Pathak",

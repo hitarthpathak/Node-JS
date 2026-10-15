@@ -12,22 +12,29 @@
 //     const matched_json_path = parsed_url.pathname.match(/^\/api\/users\/(\d+)\/?$/);
 //     const matched_table_path = parsed_url.pathname.match(/^\/users\/(\d+)\/?$/);
 
-//     if (parsed_url.pathname === '/api/users' || parsed_url.pathname === '/api/users/') {
+//     // GET API Using HTTP Server
+
+//     if (req.method == 'GET' && (parsed_url.pathname == '/api/users' || parsed_url.pathname == '/api/users/')) {
+//         res.writeHead(200, { 'Content-Type': 'text/json' });
 //         return res.end(JSON.stringify(Users));
 //     };
 
-//     if (matched_json_path) {
+//     if (req.method == 'GET' && matched_json_path) {
 //         const user_id = Number(matched_json_path[1]);
-//         const user = Users.find((u) => u.id === user_id);
+//         const user = Users.find((u) => u.id == user_id);
 
 //         if (user) {
+//             res.writeHead(200, { 'Content-Type': 'text/json' });
 //             return res.end(JSON.stringify(user));
-//         } else {
-//             return res.end(JSON.stringify({ error: 'User Not Found!' }));
+//         }
+//         else {
+//             res.writeHead(404, { 'Content-Type': 'text/plain' });
+//             return res.end('User Not Found!');
 //         };
 //     };
 
-//     if (parsed_url.pathname === '/' || parsed_url.pathname === '/users' || parsed_url.pathname === '/users/') {
+//     if (req.method == 'GET' && (parsed_url.pathname == '/' || parsed_url.pathname == '/users' || parsed_url.pathname == '/users/')) {
+//         res.writeHead(200, { 'Content-Type': 'text/html' });
 //         return res.end(
 //             `
 //                 <table style="height: auto; width: 100%;">
@@ -65,11 +72,12 @@
 //         );
 //     };
 
-//     if (matched_table_path) {
+//     if (req.method == 'GET' && matched_table_path) {
 //         const user_id = Number(matched_table_path[1]);
-//         const user = Users.find((u) => u.id === user_id);
+//         const user = Users.find((u) => u.id == user_id);
 
 //         if (user) {
+//             res.writeHead(200, { 'Content-Type': 'text/html' });
 //             return res.end(
 //                 `
 //                     <table style="height: auto; width: 100%;">
@@ -101,10 +109,55 @@
 //                     \n
 //                 `
 //             );
-//         } else {
+//         }
+//         else {
+//             res.writeHead(404, { 'Content-Type': 'text/plain' });
 //             return res.end('User Not Found!');
 //         };
 //     };
+
+//     // POST API Using HTTP Server
+
+//     if (req.method == 'POST' && (parsed_url.pathname == '/api/users' || parsed_url.pathname == '/api/users/')) {
+//         let body = '';
+
+//         req.on('data', (chunk) => {
+//             body += chunk.toString();
+//         });
+
+//         req.on('end', () => {
+//             try {
+//                 const parsed_body = body ? JSON.parse(body) : {};
+//                 const { full_name, email, phone, gender, city, state, country } = parsed_body;
+
+//                 const new_id = Users.length > 0 ? Users[Users.length - 1].id + 1 : 1;
+
+//                 const new_user = {
+//                     id: new_id,
+//                     full_name: full_name || "N/A",
+//                     email: email || "N/A",
+//                     phone: phone || "N/A",
+//                     gender: gender || "N/A",
+//                     city: city || "N/A",
+//                     state: state || "N/A",
+//                     country: country || "N/A"
+//                 };
+
+//                 Users.push(new_user);
+
+//                 res.writeHead(200, { 'Content-Type': 'application/json' });
+//                 return res.end(JSON.stringify(new_user));
+
+//             }
+//             catch (error) {
+//                 res.writeHead(400, { 'Content-Type': 'application/json' });
+//                 return res.end(JSON.stringify({ error: 'Invalid JSON Body Sent!' }));
+//             };
+//         });
+//         return;
+//     };
+
+//     res.writeHead(404, { 'Content-Type': 'text/plain' });
 //     res.end('Page Not Found!');
 // });
 
@@ -128,6 +181,8 @@ app.listen(PORT, () => {
     console.log(`Server Is Running On Port ${PORT}!`);
 });
 
+// GET API Using Express JS Server
+
 app.get('/api/users', (req, res) => {
     res.status(200).set({ 'Content-Type': 'application/json' });
     res.json(Users);
@@ -135,7 +190,7 @@ app.get('/api/users', (req, res) => {
 
 app.get('/api/users/:id', (req, res) => {
     const user_id = Number(req.params.id);
-    const user = Users.find((u) => u.id === user_id);
+    const user = Users.find((u) => u.id == user_id);
 
     if (user) {
         res.status(200).set({ 'Content-Type': 'application/json' });
@@ -148,6 +203,7 @@ app.get('/api/users/:id', (req, res) => {
 });
 
 app.get(['/', '/users'], (req, res) => {
+    res.status(200).set({ 'Content-Type': 'text/html' });
     return res.send(
         `
             <table style="height: auto; width: 100%;">
@@ -187,9 +243,10 @@ app.get(['/', '/users'], (req, res) => {
 
 app.get('/users/:id', (req, res) => {
     const user_id = Number(req.params.id);
-    const user = Users.find((u) => u.id === user_id);
+    const user = Users.find((u) => u.id == user_id);
 
     if (user) {
+        res.status(200).set({ 'Content-Type': 'text/html' });
         return res.send(
             `
                 <table style="height: auto; width: 100%;">
@@ -221,11 +278,40 @@ app.get('/users/:id', (req, res) => {
                 \n
             `
         );
-    } else {
-        return res.send('User Not Found!');
     }
+    else {
+        res.status(404).set({ 'Content-Type': 'text/plain' });
+        return res.send('User Not Found!');
+    };
+});
+
+// POST API Using Express JS Server
+
+app.use(express.json());
+
+app.post('/api/users', (req, res) => {
+    const { full_name, email, phone, gender, city, state, country } = req.body;
+
+    const new_id = Users.length > 0 ? Users[Users.length - 1].id + 1 : 1;
+
+    const new_user = {
+        id: new_id,
+        full_name: full_name || "N/A",
+        email: email || "N/A",
+        phone: phone || "N/A",
+        gender: gender || "N/A",
+        city: city || "N/A",
+        state: state || "N/A",
+        country: country || "N/A"
+    };
+
+    Users.push(new_user);
+
+    res.status(200).set({ 'Content-Type': 'application/json' });
+    res.json(new_user);
 });
 
 app.use((req, res) => {
+    res.status(404).set({ 'Content-Type': 'text/plain' });
     res.send('Page Not Found!');
 });
