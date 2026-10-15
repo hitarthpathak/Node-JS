@@ -130,7 +130,6 @@ http:localhost:3000/users/25
 
 http:localhost:3000/users/25/
 ```
-
 Open These Links In Browser To Get All Users Data In JSON :
 ```
 http:localhost:3000/api/users
@@ -152,3 +151,22 @@ http:localhost:3000/api/*anything*
 http:localhost:3000/api/users/*anything*
 http:localhost:3000/api/users/25/*anything*
 ```
+Send This Data In Thunder Client On Following Paths To Test The POST API :
+```
+{
+  "full_name": "Hitarth Pathak",
+  "email": "hitarth@gmail.com",
+  "phone": "987-654-3210",
+  "gender": "Male",
+  "city": "Bangalore",
+  "state": "Karnataka",
+  "country": "India"
+}
+```
+```
+http:localhost:3000/users
+http:localhost:3000/users/
+http:localhost:3000/api/users
+http:localhost:3000/api/users/
+```
+Check The Result (Updated List) On UI.

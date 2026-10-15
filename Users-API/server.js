@@ -118,7 +118,7 @@
 
 //     // POST API Using HTTP Server
 
-//     if (req.method == 'POST' && (parsed_url.pathname == '/api/users' || parsed_url.pathname == '/api/users/')) {
+//     if (req.method == 'POST' && (parsed_url.pathname == '/api/users' || parsed_url.pathname == '/api/users/' || parsed_url.pathname == '/users' || parsed_url.pathname == '/users/')) {
 //         let body = '';
 
 //         req.on('data', (chunk) => {
@@ -289,7 +289,7 @@ app.get('/users/:id', (req, res) => {
 
 app.use(express.json());
 
-app.post('/api/users', (req, res) => {
+app.post(['/api/users', '/api/users/', '/users', '/users/'], (req, res) => {
     const { full_name, email, phone, gender, city, state, country } = req.body;
 
     const new_id = Users.length > 0 ? Users[Users.length - 1].id + 1 : 1;
