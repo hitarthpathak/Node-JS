@@ -1,0 +1,17 @@
+{
+  "name": "http-middleware",
+  "version": "1.0.0",
+  "description": "A Basic HTTP Server Middleware.",
+  "keywords": [
+    "node",
+    "http-server",
+    "http-middleware"
+  ],
+  "license": "ISC",
+  "author": "Hitarth Pathak",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

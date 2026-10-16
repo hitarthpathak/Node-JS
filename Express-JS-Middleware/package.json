@@ -1,0 +1,20 @@
+{
+  "name": "express-js-middleware",
+  "version": "1.0.0",
+  "description": "A Basic Express JS Server Middleware.",
+  "keywords": [
+    "node",
+    "express-server",
+    "express-middleware"
+  ],
+  "license": "ISC",
+  "author": "Hitarth Pathak",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.3.0"
+  }
+}
