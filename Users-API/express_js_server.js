@@ -138,6 +138,75 @@ app.post(['/api/users', '/api/users/', '/users', '/users/'], (req, res) => {
     res.json(new_user);
 });
 
+// PATCH API
+
+app.patch('/api/users/:id', (req, res) => {
+    const user_id = Number(req.params.id);
+    const user_index = Users.findIndex((u) => u.id === user_id);
+
+    if (user_index != -1) {
+        const updated_user = { ...Users[user_index], ...req.body, id: user_id };
+
+        Users[user_index] = updated_user;
+
+        res.status(200).set({ 'Content-Type': 'application/json' });
+        res.json({ message: 'User Updated Successfully!', updated_user });
+    }
+    else {
+        res.status(404).set({ 'Content-Type': 'application/json' });
+        res.json({ error: 'User Not Found!' });
+    };
+});
+
+// PUT API
+
+app.put('/api/users/:id', (req, res) => {
+    const user_id = Number(req.params.id);
+    const user_index = Users.findIndex((u) => u.id === user_id);
+
+    if (user_index != -1) {
+        const { full_name, email, phone, gender, city, state, country } = req.body;
+
+        const replaced_user = {
+            id: user_id,
+            full_name: full_name || "N/A",
+            email: email || "N/A",
+            phone: phone || "N/A",
+            gender: gender || "N/A",
+            city: city || "N/A",
+            state: state || "N/A",
+            country: country || "N/A"
+        };
+
+        Users[user_index] = replaced_user;
+
+        res.status(200).set({ 'Content-Type': 'application/json' });
+        res.json({ message: 'User Replaced Successfully!', replaced_user });
+    }
+    else {
+        res.status(404).set({ 'Content-Type': 'application/json' });
+        res.json({ error: 'User Not Found!' });
+    };
+});
+
+// DELETE API
+
+app.delete('/api/users/:id', (req, res) => {
+    const user_id = Number(req.params.id);
+    const user_index = Users.findIndex((u) => u.id === user_id);
+
+    if (user_index != -1) {
+        const [deleted_user] = Users.splice(user_index, 1);
+
+        res.status(200).set({ 'Content-Type': 'application/json' });
+        res.json({ message: 'User Deleted Successfully!', deleted_user });
+    } 
+    else {
+        res.status(404).set({ 'Content-Type': 'application/json' });
+        res.json({ error: 'User Not Found!' });
+    };
+});
+
 app.use((req, res) => {
     res.status(404).set({ 'Content-Type': 'text/plain' });
     res.send('Page Not Found!');

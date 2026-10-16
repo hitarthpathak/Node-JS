@@ -143,7 +143,6 @@ const server = http.createServer((req, res) => {
 
                 res.writeHead(200, { 'Content-Type': 'application/json' });
                 return res.end(JSON.stringify(new_user));
-
             }
             catch (error) {
                 res.writeHead(400, { 'Content-Type': 'application/json' });
@@ -151,6 +150,101 @@ const server = http.createServer((req, res) => {
             };
         });
         return;
+    };
+
+    // PATCH API
+
+    if (req.method == 'PATCH' && matched_json_path) {
+        const user_id = Number(matched_json_path[1]);
+        const user_index = Users.findIndex((u) => u.id === user_id);
+
+        if (user_index == -1) {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ error: 'User Not Found!' }));
+        };
+
+        let body = '';
+
+        req.on('data', (chunk) => {
+            body += chunk.toString();
+        });
+
+        req.on('end', () => {
+            try {
+                const parsed_body = body ? JSON.parse(body) : {};
+                const updated_user = { ...Users[user_index], ...parsed_body, id: user_id };
+
+                Users[user_index] = updated_user;
+
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({ message: 'User Updated Successfully!', updated_user }));
+            }
+            catch (error) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({ error: 'Invalid JSON Body Sent!' }));
+            };
+        });
+        return;
+    };
+
+    // PUT API
+
+    if (req.method == 'PUT' && matched_json_path) {
+        const user_id = Number(matched_json_path[1]);
+        const user_index = Users.findIndex((u) => u.id === user_id);
+
+        if (user_index == -1) {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ error: 'User Not Found!' }));
+        };
+
+        let body = '';
+
+        req.on('data', (chunk) => {
+            body += chunk.toString();
+        });
+
+        req.on('end', () => {
+            try {
+                const parsed_body = body ? JSON.parse(body) : {};
+                const { full_name, email, phone, gender, city, state, country } = parsed_body;
+                const replaced_user = {
+                    id: user_id,
+                    full_name: full_name || "N/A",
+                    email: email || "N/A",
+                    phone: phone || "N/A",
+                    gender: gender || "N/A",
+                    city: city || "N/A",
+                    state: state || "N/A",
+                    country: country || "N/A"
+                };
+                Users[user_index] = replaced_user;
+                res.writeHead(200, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({ message: 'User Replaced Successfully!', replaced_user }));
+            }
+            catch (error) {
+                res.writeHead(400, { 'Content-Type': 'application/json' });
+                return res.end(JSON.stringify({ error: 'Invalid JSON Body Sent!' }));
+            };
+        });
+        return;
+    };
+
+    // DELETE API
+
+    if (req.method == 'DELETE' && matched_json_path) {
+        const user_id = Number(matched_json_path[1]);
+        const user_index = Users.findIndex((u) => u.id === user_id);
+
+        if (user_index != -1) {
+            const [deleted_user] = Users.splice(user_index, 1);
+            res.writeHead(200, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ message: 'User Deleted Successfully!', deleted_user }));
+        }
+        else {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            return res.end(JSON.stringify({ error: 'User Not Found!' }));
+        };
     };
 
     res.writeHead(404, { 'Content-Type': 'text/plain' });
