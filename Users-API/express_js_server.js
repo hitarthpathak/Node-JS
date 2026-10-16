@@ -1,6 +1,6 @@
 const express = require('express');
-const PORT = process.env.PORT || 3000;
 const Users = require('./users.json');
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -8,7 +8,7 @@ app.listen(PORT, () => {
     console.log(`Server Is Running On Port ${PORT}!`);
 });
 
-// GET API Using Express JS Server
+// GET API
 
 app.get('/api/users', (req, res) => {
     res.status(200).set({ 'Content-Type': 'application/json' });
@@ -112,7 +112,7 @@ app.get('/users/:id', (req, res) => {
     };
 });
 
-// POST API Using Express JS Server
+// POST API
 
 app.use(express.json());
 

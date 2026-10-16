@@ -8,7 +8,7 @@ const server = http.createServer((req, res) => {
     const matched_json_path = parsed_url.pathname.match(/^\/api\/users\/(\d+)\/?$/);
     const matched_table_path = parsed_url.pathname.match(/^\/users\/(\d+)\/?$/);
 
-    // GET API Using HTTP Server
+    // GET API
 
     if (req.method == 'GET' && (parsed_url.pathname == '/api/users' || parsed_url.pathname == '/api/users/')) {
         res.writeHead(200, { 'Content-Type': 'text/json' });
@@ -112,7 +112,7 @@ const server = http.createServer((req, res) => {
         };
     };
 
-    // POST API Using HTTP Server
+    // POST API
 
     if (req.method == 'POST' && (parsed_url.pathname == '/api/users' || parsed_url.pathname == '/api/users/' || parsed_url.pathname == '/users' || parsed_url.pathname == '/users/')) {
         let body = '';
