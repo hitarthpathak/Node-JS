@@ -39,8 +39,14 @@ npm start
 Open These Links For Auth Middleware In Browser :
 ```
 http://localhost:3000
+```
+```
 http://localhost:3000/about
+```
+```
 http://localhost:3000/dashboard
+```
+```
 http://localhost:3000/dashboard?role=admin
 ```
 *Default :*
@@ -91,8 +97,14 @@ npm start
 Open These Links For Auth Middleware In Browser :
 ```
 http://localhost:3000
+```
+```
 http://localhost:3000/about
+```
+```
 http://localhost:3000/dashboard
+```
+```
 http://localhost:3000/dashboard?role=admin
 ```
 *Default :*
@@ -106,6 +118,8 @@ Check The Console For Login Middleware.
 Terminal Command :
 ```
 node http_server.js
+```
+```
 node express_js_server.js
 ```
 Open This Link In Browser :
@@ -118,6 +132,8 @@ Change URL Path(s) & Check *logs.txt* File.
 Terminal Command :
 ```
 node http_server.js
+```
+```
 node express_js_server.js
 ```
 Open This Link In Browser :
@@ -149,6 +165,8 @@ Check The Update On UI.
 Terminal Command :
 ```
 node http_server.js
+```
+```
 node express_js_server.js
 ```
 
@@ -207,8 +225,14 @@ Send This Data In Thunder Client On Following Paths To Test The POST API :
 ```
 ```
 http://localhost:3000/users
+```
+```
 http://localhost:3000/users/
+```
+```
 http://localhost:3000/api/users
+```
+```
 http://localhost:3000/api/users/
 ```
 Check The Result (Updated List) On UI.
@@ -250,3 +274,43 @@ Enter An ID In The Following Path To Delete It From The List. Leave The Body Emp
 http://localhost:3000/api/users/*id*
 ```
 Check The Result (Updated List) On UI.
+
+# Real-Time Communication
+Terminal Command :
+```
+node http_server.js
+```
+```
+node express_js_server.js
+```
+Open This Link In Browser :
+```
+http://localhost:3000
+```
+
+### Polling :
+
+### Server-Sent Events (SSE) :
+
+### WebSockets :
+Paste This In Browser Console To Communicate To The Server :
+```
+const socket = new WebSocket('ws://localhost:3000');
+
+socket.onopen = () => {
+    console.log('BROWSER : Connected to Server!');
+    socket.send('Hello Server! I Am Browser!');
+};
+
+socket.onmessage = (event) => {
+    console.log(`Message From Server : ${event.data}`);
+};
+
+function send_message(text) {
+    socket.send(text);
+};
+```
+For Next / Continuous Messaging With Server, Use This :
+```
+send_message('*your-message*');
+```

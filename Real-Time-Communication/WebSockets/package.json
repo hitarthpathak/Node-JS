@@ -1,0 +1,23 @@
+{
+  "name": "real-time-communication",
+  "version": "1.0.0",
+  "description": "A Basic Real-Time Communication Through WebSockets Using HTTP Server & Express JS Server.",
+  "keywords": [
+    "node",
+    "http-server",
+    "express-server",
+    "websockets",
+    "real-time-communication"
+  ],
+  "license": "ISC",
+  "author": "Hitarth Pathak",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node express_js_server.js"
+  },
+  "dependencies": {
+    "express": "^5.3.0",
+    "ws": "^8.22.0"
+  }
+}

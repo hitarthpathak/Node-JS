@@ -1,0 +1,19 @@
+{
+  "name": "real-time-communication",
+  "version": "1.0.0",
+  "description": "A Basic Real-Time Communication Through Server-Sent Events Using HTTP Server & Express JS Server.",
+  "keywords": [
+    "node",
+    "http-server",
+    "express-server",
+    "server-sent-events",
+    "real-time-communication"
+  ],
+  "license": "ISC",
+  "author": "Hitarth Pathak",
+  "type": "commonjs",
+  "main": "web_sockets.js",
+  "scripts": {
+    "start": "node web_sockets.js"
+  }
+}
