@@ -23,7 +23,7 @@ const auth_middleware = (req, res, next) => {
 const server = http.createServer((req, res) => {
     login_middleware(req, res, () => {
         auth_middleware(req, res, () => {
-            if (req.url == '/' || req.url == '') {
+            if (req.url == '' || req.url == '/') {
                 res.writeHead(200, { 'Content-Type': 'text/plain' });
                 res.end('Home Page!');
             }

@@ -29,7 +29,7 @@ const server = http.createServer((req, res) => {
         };
     };
 
-    if (req.method == 'GET' && (parsed_url.pathname == '/' || parsed_url.pathname == '/users' || parsed_url.pathname == '/users/')) {
+    if (req.method == 'GET' && (parsed_url.pathname == '' || parsed_url.pathname == '/' || parsed_url.pathname == '/users' || parsed_url.pathname == '/users/')) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         return res.end(
             `
@@ -156,7 +156,7 @@ const server = http.createServer((req, res) => {
 
     if (req.method == 'PATCH' && matched_json_path) {
         const user_id = Number(matched_json_path[1]);
-        const user_index = Users.findIndex((u) => u.id === user_id);
+        const user_index = Users.findIndex((u) => u.id == user_id);
 
         if (user_index == -1) {
             res.writeHead(404, { 'Content-Type': 'application/json' });
@@ -191,7 +191,7 @@ const server = http.createServer((req, res) => {
 
     if (req.method == 'PUT' && matched_json_path) {
         const user_id = Number(matched_json_path[1]);
-        const user_index = Users.findIndex((u) => u.id === user_id);
+        const user_index = Users.findIndex((u) => u.id == user_id);
 
         if (user_index == -1) {
             res.writeHead(404, { 'Content-Type': 'application/json' });
@@ -234,7 +234,7 @@ const server = http.createServer((req, res) => {
 
     if (req.method == 'DELETE' && matched_json_path) {
         const user_id = Number(matched_json_path[1]);
-        const user_index = Users.findIndex((u) => u.id === user_id);
+        const user_index = Users.findIndex((u) => u.id == user_id);
 
         if (user_index != -1) {
             const [deleted_user] = Users.splice(user_index, 1);

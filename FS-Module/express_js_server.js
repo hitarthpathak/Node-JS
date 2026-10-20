@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use((req, res, next) => {
-    if (req.url === '/favicon.ico') {
+    if (req.url == '/favicon.ico') {
         return res.status(204).end();
     };
 

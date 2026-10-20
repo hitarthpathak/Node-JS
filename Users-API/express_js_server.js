@@ -4,10 +4,6 @@ const PORT = process.env.PORT || 3000;
 
 const app = express();
 
-app.listen(PORT, () => {
-    console.log(`Server Is Running On Port ${PORT}!`);
-});
-
 // GET API
 
 app.get('/api/users', (req, res) => {
@@ -142,7 +138,7 @@ app.post(['/api/users', '/api/users/', '/users', '/users/'], (req, res) => {
 
 app.patch('/api/users/:id', (req, res) => {
     const user_id = Number(req.params.id);
-    const user_index = Users.findIndex((u) => u.id === user_id);
+    const user_index = Users.findIndex((u) => u.id == user_id);
 
     if (user_index != -1) {
         const updated_user = { ...Users[user_index], ...req.body, id: user_id };
@@ -162,7 +158,7 @@ app.patch('/api/users/:id', (req, res) => {
 
 app.put('/api/users/:id', (req, res) => {
     const user_id = Number(req.params.id);
-    const user_index = Users.findIndex((u) => u.id === user_id);
+    const user_index = Users.findIndex((u) => u.id == user_id);
 
     if (user_index != -1) {
         const { full_name, email, phone, gender, city, state, country } = req.body;
@@ -193,7 +189,7 @@ app.put('/api/users/:id', (req, res) => {
 
 app.delete('/api/users/:id', (req, res) => {
     const user_id = Number(req.params.id);
-    const user_index = Users.findIndex((u) => u.id === user_id);
+    const user_index = Users.findIndex((u) => u.id == user_id);
 
     if (user_index != -1) {
         const [deleted_user] = Users.splice(user_index, 1);
@@ -210,4 +206,8 @@ app.delete('/api/users/:id', (req, res) => {
 app.use((req, res) => {
     res.status(404).set({ 'Content-Type': 'text/plain' });
     res.send('Page Not Found!');
+});
+
+app.listen(PORT, () => {
+    console.log(`Server Is Running On Port ${PORT}!`);
 });

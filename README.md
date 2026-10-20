@@ -289,6 +289,26 @@ http://localhost:3000
 ```
 
 ### Polling :
+Paste This In Browser Console To Communicate To The Server :
+```
+setInterval(async () => {
+    try {
+        const res = await fetch(`http://localhost:3000/?data=true`);
+        const data = await res.text();
+
+        document.body.style.fontFamily = 'monospace';
+        document.body.style.whiteSpace = 'pre';
+        document.body.innerText += '\n--- Connection Started! ---\n' +
+                                   'CLIENT : Hey Server! What Date & Time Is It ?\n' +
+                                   'SERVER : ' + data + '\n' +
+                                   '--- Connection Closed! ---\n';
+    }
+    catch (err) {
+        console.error("Fetch failed:", err.message);
+    };
+}, 3000);
+```
+Check The  Result On UI.
 
 ### Server-Sent Events (SSE) :
 
