@@ -5,7 +5,7 @@ const app = express();
 
 app.get(['', '/'], (req, res) => {
     res.status(200).set({ 'Content-Type': 'text/plain' });
-    res.send('Hello From Express Server!');
+    res.send('Hello From Express JS Server!');
 });
 
 app.listen(PORT, () => {

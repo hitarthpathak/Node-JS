@@ -15,5 +15,8 @@
   "main": "web_sockets.js",
   "scripts": {
     "start": "node web_sockets.js"
+  },
+  "dependencies": {
+    "express": "^5.3.0"
   }
 }

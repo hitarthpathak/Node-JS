@@ -6,14 +6,14 @@ const app = express();
 app.get('/', (req, res, next) => {
     if (req.query.data == 'true') {
         res.status(200).set({ 'Content-Type': 'text/plain' });
-        return res.send(`${new Date().toLocaleString()}`);
+        return res.send(`Date : ${new Date().toLocaleDateString()} || Time : ${new Date().toLocaleTimeString()}`);
     };
     next();
 });
 
 app.get(['/', ''], (req, res) => {
     res.status(200).set({ 'Content-Type': 'text/plain' });
-    res.send('Hello From HTTP Server!');
+    res.send('Hello From Express JS Server!');
 });
 
 app.use((req, res) => {

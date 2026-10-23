@@ -291,46 +291,72 @@ http://localhost:3000
 ### Polling :
 Paste This In Browser Console To Communicate To The Server :
 ```
-setInterval(async () => {
-    try {
-        const res = await fetch(`http://localhost:3000/?data=true`);
-        const data = await res.text();
+console.log('=== Polling ===');
 
-        document.body.style.fontFamily = 'monospace';
-        document.body.style.whiteSpace = 'pre';
-        document.body.innerText += '\n--- Connection Started! ---\n' +
-                                   'CLIENT : Hey Server! What Date & Time Is It ?\n' +
-                                   'SERVER : ' + data + '\n' +
-                                   '--- Connection Closed! ---\n';
+async function send_request() {
+    console.log('Connected To Server!');
+    console.log('[Browser] : Hey Server! What Date & Time Is It?');
+    try {
+        const response = await fetch('http://localhost:3000/?data=true');
+        const text_data = await response.text();
+
+        console.log(`[Server] : ${text_data}`);
+        console.log('Disconnected From Server!');
     }
-    catch (err) {
-        console.error("Fetch failed:", err.message);
+    catch (error) {
+        console.error(`Error Connecting To Server : ${error.message}`);
     };
-}, 3000);
+};
 ```
-Check The  Result On UI.
+To Get The Next Message From Server, Call The send_request() Function Again :
+```
+send_message();
+```
 
 ### Server-Sent Events (SSE) :
+Paste This In Browser Console To Communicate To The Server :
+```
+console.log('=== Server-Sent Events ===');
+
+async function send_request() {
+    console.log('Connected To Server!');
+    console.log('[Browser] : Hey Server! Stream The Live Date & Time Updates!');
+    try {
+        const event_source = new EventSource('http://localhost:3000/?data=true');
+        event_source.onmessage = (event) => {
+            console.log(`[Server] : ${event.data}`);
+        };
+        event_source.onerror = (err) => {
+            console.error("[SSE] Stream Connection Error or Disconnect : ", err);
+        };
+    }
+    catch (error) {
+        console.error(`Error Connecting To Server : ${error.message}`);
+    };
+};
+```
+Check The Results On Browser Console. Reload The Page To Stop The Connection.
 
 ### WebSockets :
 Paste This In Browser Console To Communicate To The Server :
 ```
+console.log('=== WebSockets ===');
+
 const socket = new WebSocket('ws://localhost:3000');
 
 socket.onopen = () => {
-    console.log('BROWSER : Connected to Server!');
-    socket.send('Hello Server! I Am Browser!');
+    console.log('WebSocket Connection Opened On Browser!');
 };
 
 socket.onmessage = (event) => {
-    console.log(`Message From Server : ${event.data}`);
+    console.log(`${event.data}`);
 };
 
 function send_message(text) {
     socket.send(text);
 };
 ```
-For Next / Continuous Messaging With Server, Use This :
+To Get The Next Message From Server, Call The send_request() Function Again With Your Message :
 ```
 send_message('*your-message*');
 ```

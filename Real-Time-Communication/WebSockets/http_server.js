@@ -10,13 +10,11 @@ const server = http.createServer((req, res) => {
 const websocket_server = new WebSocket.Server({ server });
 
 websocket_server.on('connection', (socket) => {
-    console.log("SERVER : Connected To Browser!");
-
-    socket.send('Hello Browser! I Am Server!');
+    console.log('WebSocket Connection Opened On Server!');
 
     socket.on('message', (message) => {
-        console.log('Message From Client : ', message.toString());
-        socket.send(`Server Recieved Your Message : ${message.toString()}`);
+        console.log('[Message From Browser] : ', message.toString());
+        socket.send(`[Server Recieved Your Message] : ${message.toString()}`);
     });
 
     socket.on('close', () => {

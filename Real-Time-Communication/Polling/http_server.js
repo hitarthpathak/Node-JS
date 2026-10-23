@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 3000;
 const server = http.createServer((req, res) => {
     if (req.url == '/?data=true') {
         res.writeHead(200, { 'Content-Type': 'text/plain' });
-        return res.end(`Time : ${new Date().toLocaleString()}`);
+        return res.end(`Date : ${new Date().toLocaleDateString()} || Time : ${new Date().toLocaleTimeString()}`);
     }
     else if (req.url == '' || req.url == '/') {
         res.writeHead(200, { 'Content-Type': 'text/plain' });
